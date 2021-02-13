@@ -22,16 +22,6 @@ public class Meme {
 
 	private String url;
 
-	private Timestamp date;
-
-	public Timestamp getDate() {
-		return date;
-	}
-
-	public void setDate(Timestamp date) {
-		this.date = date;
-	}
-
 	public long getId() {
 		return id;
 	}

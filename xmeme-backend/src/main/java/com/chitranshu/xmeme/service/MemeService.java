@@ -30,7 +30,6 @@ public class MemeService {
 		meme.setName(name);
 		meme.setCaption(caption);
 		meme.setUrl(url);
-		meme.setDate(new Timestamp(System.currentTimeMillis()));
 		meme = memeRepository.saveAndFlush(meme);
 
 		return meme.getId();

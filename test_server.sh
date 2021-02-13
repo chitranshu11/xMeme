@@ -18,6 +18,7 @@ sudo ./install.sh
 
 # 2. We’ll be running your server_run.sh as a background process (using &) so that we can run the next set of commands
 
+
 chmod +x server_run.sh
 
 ./server_run.sh &
@@ -39,20 +40,7 @@ curl --location --request GET 'http://localhost:8081/memes'
 
 # Execute the POST /memes endpoint using curl
 
-curl --location --request POST 'http://<Server_URL>/memes' \
-
---header 'Content-Type: application/json' \
-
---data-raw '{
-
-"name": "xyz",
-
-"url": "abc.com",
-
-"caption": "This is a meme"
-
-}'
-
+curl --location http://localhost:8081/memes --request POST --header "Content-Type: application/json" --data '{"name": "xyz","url": "https://abc.com","caption": "This is a meme"}'
 
 # Execute the GET /memes endpoint using curl
 
@@ -61,4 +49,4 @@ curl --location --request GET 'http://localhost:8081/memes'
 
 # If you have swagger enabled, make sure it is exposed at localhost:8080
 
-curl --location --request GET 'http://localhost:8080/swagger-ui/'
+curl --location --request GET 'http://localhost:8080/'

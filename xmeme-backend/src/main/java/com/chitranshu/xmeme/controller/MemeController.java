@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +22,7 @@ import com.chitranshu.xmeme.json.PostMemeResponse;
 import com.chitranshu.xmeme.model.Meme;
 import com.chitranshu.xmeme.service.MemeService;
 
-@CrossOrigin("https://xmeme-chitranshu.netlify.app")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class MemeController {
 
@@ -33,7 +34,7 @@ public class MemeController {
 		return "Chitranshu Gour";
 	}
 
-	@RequestMapping(value = "/memes", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/memes", method = RequestMethod.POST,consumes ="application/json" , produces = "application/json")
 	public ResponseEntity<PostMemeResponse> addMeme(@RequestBody MemeRequest request) {
 
 		PostMemeResponse response = new PostMemeResponse();
@@ -45,27 +46,22 @@ public class MemeController {
 		} catch (DuplicateMemeException e) {
 			return new ResponseEntity<>(null, HttpStatus.CONFLICT);
 		} catch (Exception e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 
 	}
 
 	@RequestMapping(value = "/memes", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<MemeResponse>> getMemes() {
+	public ResponseEntity<List<Meme>> getMemes() {
 
 		// GetMemeResponse response = new GetMemeResponse();
 		try {
 
 			List<Meme> memes = memeService.getLatestMemes();
-			List<MemeResponse> response = new ArrayList<MemeResponse>();
-			for (Meme meme : memes) {
-				MemeResponse obj = new MemeResponse(String.valueOf(meme.getId()), meme.getName(), meme.getUrl(),
-						meme.getCaption());
-				response.add(obj);
-			}
+			
 
-			return new ResponseEntity<>(response, HttpStatus.OK);
+			return new ResponseEntity<>(memes, HttpStatus.OK);
 		} catch (Exception e) {
 			// response.setMemes(null);
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

@@ -10,8 +10,9 @@ public class MemeRequest {
 	 */
 
 	private String name;
-	private String caption;
 	private String url;
+	private String caption;
+
 
 	public String getName() {
 		return name;
