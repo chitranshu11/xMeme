@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,17 +21,18 @@ import com.chitranshu.xmeme.json.PostMemeResponse;
 import com.chitranshu.xmeme.model.Meme;
 import com.chitranshu.xmeme.service.MemeService;
 
+@CrossOrigin("https://xmeme-chitranshu.netlify.app")
 @RestController
 public class MemeController {
-	
+
 	@Autowired
 	MemeService memeService;
-	
+
 	@GetMapping("/")
 	public String entryPoint() {
 		return "Chitranshu Gour";
 	}
-	
+
 	@RequestMapping(value = "/memes", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<PostMemeResponse> addMeme(@RequestBody MemeRequest request) {
 
@@ -43,7 +45,7 @@ public class MemeController {
 		} catch (DuplicateMemeException e) {
 			return new ResponseEntity<>(null, HttpStatus.CONFLICT);
 		} catch (Exception e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 
@@ -99,5 +101,5 @@ public class MemeController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 }

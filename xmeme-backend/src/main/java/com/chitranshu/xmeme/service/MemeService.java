@@ -39,7 +39,7 @@ public class MemeService {
 	public List<Meme> getLatestMemes() {
 
 		// To get latest 100 entries from database
-		Page<Meme> page = memeRepository.findAll(PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "date")));
+		Page<Meme> page = memeRepository.findAll(PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "id")));
 
 		List<Meme> memes = page.getContent();
 
