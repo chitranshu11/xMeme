@@ -1,19 +1,36 @@
 package com.chitranshu.xmeme.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.chitranshu.xmeme.exception.DuplicateMemeException;
+import com.chitranshu.xmeme.json.MemeRequest;
+import com.chitranshu.xmeme.json.MemeResponse;
+import com.chitranshu.xmeme.json.PostMemeResponse;
+import com.chitranshu.xmeme.model.Meme;
+import com.chitranshu.xmeme.service.MemeService;
 
 @RestController
 public class MemeController {
-	/*
+	
 	@Autowired
 	MemeService memeService;
-	*/
+	
 	@GetMapping("/")
 	public String entryPoint() {
 		return "Chitranshu Gour";
 	}
-	/*
+	
 	@RequestMapping(value = "/memes", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<PostMemeResponse> addMeme(@RequestBody MemeRequest request) {
 
@@ -82,5 +99,5 @@ public class MemeController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
-	*/
+	
 }
