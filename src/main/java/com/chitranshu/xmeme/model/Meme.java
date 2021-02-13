@@ -20,7 +20,6 @@ public class Meme {
 	private String name;
 	private String caption;
 
-	@Column(columnDefinition = "MEDIUMTEXT")
 	private String url;
 
 	private Timestamp date;
