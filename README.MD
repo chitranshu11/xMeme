@@ -1,9 +1,6 @@
-**xMEME - Meme Posting Website**
+# xMeme
+## Meme posting web application.
+### Please check the project here : https://xmeme-chitranshu.netlify.app/
 
-**Build with Spring Boot as backend and React App as frontend**
-
-
-**xmeme-backend** - Contains backend code
-
-
-**xmeme-frontend** - Contains frontend code
+<h3> xmeme-backend: </h3> Contains backend code in Spring Boot.
+<h3> xmeme-frontend: </h3> Contains frontend code in React.
